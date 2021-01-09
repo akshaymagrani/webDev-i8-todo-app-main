@@ -1,36 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+
   <title>Frontend Mentor | Todo app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <!-- External Stylesheet Link 👍 -->
+  <link href="index.css" rel="stylesheet" />
+
+  <!-- Google Font Link -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Bootstrap Link-->
+  <link href="bootstrap-5.0/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Script -->
+  <script src="index.js"></script>
+
+  <script src="https://kit.fontawesome.com/6baf49cd15.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
+  <main id="bg" class="bg-mobile bg-desktop">
+    <div class="container1">
+      <header style="letter-spacing: 5px; color: white">TODO</header>
+      <img src="images/icon-moon.svg" alt="icon-moon" class="icon-moon" id="icon-moon" height=26px width=26px />
+      <img src="images/icon-sun.svg" alt="icon-sun" class="icon-sun" id="icon-sun" height=26px width=26px
+        style="display:none" />
+    </div>
+    <!-- Add dynamic number -->
+    <div class="newTODO pad1">
+      <div class="ab">
+        <span></span>
+        <input type="text" name="tasks" placeholder="Create a new todo..." id="TODOinsert" class="textInput" />
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" id="right" fill="currentColor"
+        class="bi bi-arrow-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+      </svg>
+    </div>
 
-  Todo
+    <div id="TODOlistItems" class="newTODO pad1 list-group p-0 shadow">
+      <li class="newTODO list-group-item d-flex justify-content-between p-3">
+        <div class="ab">
+          <input type="checkbox" id="switch1" name="checkbox" aria-label="true" class="checkbox" />
+          <label for="switch1"><i class="fas fa-check fa-xs"></i></label>
+          <input type="text" name="tasks" value="Jog around the park" class="textInput" />
+        </div>
+        <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+      </li>
+      <li class="newTODO status list-group-item d-flex w-100 p-3">
+        <a href="#" class="m-0 fw-bold text-decoration-none link-dark"><span id="itemsNumber">5</span> items
+          left</a>
+        <a href="#" class="m-0 fw-bold text-decoration-none link-dark">Clear Completed</a>
+      </li>
+    </div>
 
-  <!-- Add dynamic number --> items left
+    <ul class="p-0">
+      <li id="listItems" class="newTODO shadow p-0">
+        <a href="#" class="m-0 p-3 fw-bold pe-auto text-decoration-none link-dark">All</a>
+        <a href="#" class="m-0 p-3 fw-bold pe-auto text-decoration-none link-dark">Active</a>
+        <a href="#" class="m-0 p-3 fw-bold pe-auto text-decoration-none link-dark">Completed</a>
+      </li>
+    </ul>
 
-  All
-  Active 
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list
-
+    <p class="text-center text-secondary fw-bold">Drag and drop to reorder list</p>
+  </main>
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Akshaykumar I. Magrani</a>.
   </div>
+  <script>
+    var toDayTheme = document.getElementById("icon-sun");
+    var toNightTheme = document.getElementById("icon-moon");
+    var themeImageCh = document.getElementById("bg");
+    var fields = document.getElementById("newTODO");
+    var textInput = document.getElementsByClassName("textInput");
+    var x = document.getElementsByClassName("newTODO");
+
+    var body = document.getElementsByTagName("body");
+    console.log(body);
+
+    toDayTheme.addEventListener("click", function () {
+      toDayTheme.style.display = "none";
+      toNightTheme.style.display = "block";
+
+
+      // Create a condition that targets viewports at least 768px wide
+      const mediaQuery = window.matchMedia('(min-width: 576px)')
+
+      function handleTabletChange(e) {
+        // Check if the media query is true
+        if (e.matches) {
+          // Then log the following message to the console
+          themeImageCh.style.backgroundImage = "url('images/bg-desktop-light.jpg')";
+        } else {
+          themeImageCh.style.backgroundImage = "url('images/bg-mobile-light.jpg')";
+        }
+      }
+
+      // Register event listener
+      mediaQuery.addListener(handleTabletChange)
+
+      // Initial check
+      handleTabletChange(mediaQuery)
+
+
+      body[0].style.backgroundColor = "hsl(233, 11%, 84%)";
+      for (let i = 0; i < x.length; i++) {
+        x[i].style.backgroundColor = "white";
+      }
+      for (let i = 0; i < textInput.length; i++) {
+        textInput[i].style.backgroundColor = "white";
+      }
+    });
+    toNightTheme.addEventListener("click", function () {
+      toNightTheme.style.display = "none";
+      toDayTheme.style.display = "block";
+
+
+      // Create a condition that targets viewports at least 768px wide
+      const mediaQuery = window.matchMedia('(min-width: 576px)')
+
+      function handleTabletChange(e) {
+        // Check if the media query is true
+        if (e.matches) {
+          // Then log the following message to the console
+          themeImageCh.style.backgroundImage = "url('images/bg-desktop-dark.jpg')";
+        } else {
+          themeImageCh.style.backgroundImage = "url('images/bg-mobile-dark.jpg')";
+        }
+      }
+
+      // Register event listener
+      mediaQuery.addListener(handleTabletChange)
+
+      // Initial check
+      handleTabletChange(mediaQuery)
+
+      body[0].style.backgroundColor = "hsl(235, 21%, 11%)";
+      var i;
+      for (i = 0; i < x.length; i++) {
+        x[i].style.backgroundColor = "grey";
+      }
+      for (let i = 0; i < textInput.length; i++) {
+        textInput[i].style.backgroundColor = "grey";
+      }
+    });
+
+    //developing functionality for TODO
+    let todoArray = [];
+    var todos = document.getElementById("TODOinsert");
+    var right = document.getElementById("right");
+    var todoListItems = document.getElementById("TODOlistItems");
+    var listTODO = right.addEventListener("click", () => {
+      if (todos.nodeValue == "") {
+        alert("Please enter a TODO.");
+      } else {
+        todoArray.unshift(todos.value);
+        console.log(todos);
+        console.log(todoArray);
+        todoListItems.insertAdjacentElement("afterbegin", "<li>Lkjhh</li>");
+      }
+    });
+
+  </script>
+  <script src="bootstrap-5.0/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

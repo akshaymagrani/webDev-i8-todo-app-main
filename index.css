@@ -1,0 +1,213 @@
+:root {
+  font-family: "Josefin Sans", sans-serif;
+
+  /* Color Varaibles */
+  /* Primary */
+  --brightBlue: hsl(220, 98%, 61%);
+  --checkBackground: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+  /* Neutral */
+  /* Light Theme */
+  --veryLightGray: hsl(0, 0%, 98%);
+  --veryLightGrayishBlue: hsl(236, 33%, 92%);
+  --lightGrayishBlue: hsl(233, 11%, 84%);
+  --darkGrayishBlue: hsl(236, 9%, 61%);
+  --veryDarkGrayishBlue: hsl(235, 19%, 35%);
+
+  /* Dark Theme*/
+  --veryDarkBlue: hsl(235, 21%, 11%);
+  --veryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+  --lightGrayishBlue: hsl(234, 39%, 85%);
+  --lightGrayishBlue-hover: hsl(236, 33%, 92%);
+  --darkGrayishBlue: hsl(234, 11%, 52%);
+  --veryDarkGrayishBlue: hsl(233, 14%, 35%);
+  --veryDarkGrayishBlue: hsl(237, 14%, 26%);
+}
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  background-color: var(--veryLightGray);
+}
+main {
+  margin: auto;
+  width: 100%;
+}
+
+/*____Header____*/
+.container1 {
+  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 5rem 1rem 0 1rem;
+}
+.bg-mobile {
+  background-image: url("images/bg-desktop-light.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+}
+header {
+  font-size: 2rem;
+}
+#listItems {
+  display: flex;
+  justify-content: space-around;
+  max-width: 400px;
+  padding: 0;
+  margin: 1rem auto;
+  padding: 0 0.75rem;
+  border-radius: 5px;
+}
+ul {
+  padding: 0;
+}
+.ab {
+  display: flex;
+}
+.ab > span {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: solid 1px grey;
+}
+.newTODO {
+  color: var(--veryDarkGrayishBlue);
+  justify-content: space-between;
+}
+.textInput {
+  background: white;
+  border: none;
+  padding-left: 1rem;
+}
+.color {
+  fill: grey;
+  width: 10px;
+  height: 10px;
+}
+
+#switch,
+#switch1 {
+  width: 0;
+  height: 0;
+  display: none;
+}
+label {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  display: block;
+  border-radius: 50%;
+  position: relative;
+}
+
+label:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: solid 1px grey;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+input:checked + label {
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+}
+
+input:checked + label:after {
+  background-image: linear-gradient(
+    90deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+}
+
+label:active:after {
+  width: 22px;
+  background-image: linear-gradient(
+    90deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+}
+.fas {
+  position: relative;
+  color: white;
+  z-index: 1;
+  left: 5px;
+  bottom: 1px;
+}
+.link-dark:hover {
+  color: blue !important;
+}
+
+#listItems > p {
+  padding-right: 1rem;
+}
+
+.pad1 {
+  padding: 0.75rem;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  margin: 2rem auto 1rem;
+  background-color: white;
+}
+
+/*___Status____*/
+.status {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  max-width: 400px;
+  list-style: none;
+  margin: auto;
+  padding: 0.75rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.status ~ p {
+  color: grey;
+  text-align: center;
+}
+
+@media screen and (min-width: 576px) {
+  .container1,
+  .status,
+  .pad1,
+  #listItems {
+    max-width: 700px;
+  }
+  .bg-desktop {
+    background-image: url("images/bg-desktop-light.jpg");
+  }
+}
+
+/*____Signature____*/
+.attribution {
+  font-size: 11px;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
